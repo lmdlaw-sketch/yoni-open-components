@@ -1,0 +1,50 @@
+name: Component review
+description: Report a reproducible issue, counterexample, or contract question for one component.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Choose one component and read its README and REVIEW document first.
+        See [CONTRIBUTING.md](https://github.com/lmdlaw-sketch/yoni-open-components/blob/main/CONTRIBUTING.md) for the existing review guidance.
+
+        Use a minimal synthetic input sequence or test. Do not attach real conversations,
+        recordings, documents, credentials or private source material.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Voice history
+        - Encrypted rolling buffer
+        - Visible-send observation
+        - Transcript coverage
+  - type: input
+    id: commit
+    attributes:
+      label: Repository commit
+      description: The commit you reviewed or ran.
+  - type: textarea
+    id: toolchains
+    attributes:
+      label: Runtime and compiler versions
+      description: Include the versions used for the component.
+  - type: textarea
+    id: command
+    attributes:
+      label: Exact reproduction command
+      description: The command you ran to reproduce the result.
+  - type: textarea
+    id: synthetic-input
+    attributes:
+      label: Minimal synthetic input sequence or test
+      description: A failing regression test is especially useful.
+  - type: textarea
+    id: expected-observed
+    attributes:
+      label: Expected and observed results
+      description: Distinguish a documented tradeoff from a bug.
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Smallest proposed change, if known
+      description: Describe a contract or implementation change, if you have one.
