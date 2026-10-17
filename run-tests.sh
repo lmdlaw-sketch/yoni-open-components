@@ -14,4 +14,6 @@ printf '\nTranscript coverage\n'
   PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
   PYTHONDONTWRITEBYTECODE=1 python3 demo.py
 )
+printf '\nDuplicate selection\n'
+bash "$repo_dir/duplicate-selection/run-tests.sh"
 printf '\nAll component checks completed.\n'

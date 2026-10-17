@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   standalone-components:
-    name: Four standalone components
+    name: Five standalone components
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

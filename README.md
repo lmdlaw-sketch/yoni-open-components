@@ -2,7 +2,7 @@
 
 [![Component tests (main)](https://github.com/lmdlaw-sketch/yoni-open-components/actions/workflows/component-tests.yml/badge.svg?branch=main&event=push)](https://github.com/lmdlaw-sketch/yoni-open-components/actions/workflows/component-tests.yml)
 
-Four small, independently runnable components, each centered on one concrete
+Five small, independently runnable components, each centered on one concrete
 correctness question. Start with the component closest to your experience; no
 knowledge of the surrounding applications is needed.
 
@@ -12,6 +12,7 @@ knowledge of the surrounding applications is needed.
 | [Encrypted rolling buffer](rolling-buffer/) | Java 17 | Retains recent encoded packets and protects selected intervals | [Can save, retention, leases and recovery lose a protected interval?](rolling-buffer/REVIEW.md) |
 | [Visible-send observation](visible-send/) | Java 11+ | Matches a draft and outgoing-bubble count changes | [What extra evidence distinguishes a new send from a viewport change?](visible-send/REVIEW.md) |
 | [Transcript coverage](transcript-coverage/) | Python 3.9+ | Finds token differences between two transcriptions | [How can OCR noise be tolerated without hiding consequential omissions?](transcript-coverage/REVIEW.md) |
+| [Duplicate selection](duplicate-selection/) | Kotlin/JVM | Plans selections across overlapping duplicate groups while retaining represented paths | [Can overlapping groups exhaust a represented content set?](duplicate-selection/REVIEW.md) |
 
 Each directory contains code, synthetic examples, regression tests, an input
 contract and a focused review request. These are review baselines, not complete
@@ -70,6 +71,8 @@ closing a lease uses its original identity, independently of mutable display
 metadata. Packages and synthetic labels were renamed, and standalone test
 harnesses were added. The Python checker has one deliberate behavior change: an application-specific
 footer exemption is now an explicit exact-line option, disabled by default.
+Duplicate selection preserves its two core algorithms; unused application models
+are omitted, and existing tests run with a standalone assertion harness.
 Each component documents its boundaries in more detail.
 
 AI assistance was used to extract these components, adapt tests and prepare
