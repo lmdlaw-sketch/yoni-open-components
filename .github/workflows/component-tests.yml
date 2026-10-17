@@ -1,0 +1,74 @@
+name: Component tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: component-tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  standalone-components:
+    name: Four standalone components
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Java
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+
+      - name: Install the verified Kotlin compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/kotlin-compiler-2.1.20.zip"
+          compiler_dir="$RUNNER_TEMP/yoni-kotlin-2.1.20"
+          curl --fail --location --retry 3 --connect-timeout 15 --max-time 180 \
+            https://github.com/JetBrains/kotlin/releases/download/v2.1.20/kotlin-compiler-2.1.20.zip \
+            --output "$archive"
+          printf '%s  %s\n' \
+            a118197b0de55ffab2bc8d5cd03a5e39033cfb53383d6931bc761dec0784891a \
+            "$archive" | sha256sum --check -
+          unzip -q "$archive" -d "$compiler_dir"
+          echo "$compiler_dir/kotlinc/bin" >> "$GITHUB_PATH"
+
+      - name: Record toolchain versions
+        shell: bash
+        run: |
+          java -version
+          kotlinc -version
+          python3 --version
+
+      - name: Run the existing suites and included examples
+        shell: bash
+        run: bash run-tests.sh
+
+      - name: Run the documented voice-history example
+        shell: bash
+        run: |
+          set -euo pipefail
+          kotlinc voice-history/src/main/kotlin/org/yonicomponents/voicehistory/LiveHistory.kt \
+            voice-history/examples/Example.kt -include-runtime \
+            -d "$RUNNER_TEMP/voice-history-example.jar"
+          java -jar "$RUNNER_TEMP/voice-history-example.jar"
+
+      - name: Check that tracked source stayed unchanged
+        shell: bash
+        run: git diff --exit-code

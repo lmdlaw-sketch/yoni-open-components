@@ -1,5 +1,32 @@
 # Validation record
 
+## 2026-10-17 maintenance verification
+
+The existing root runner was rerun locally against exact Git source
+`617ba95f2f7095c0b7dfd793997ec2593a313f67`; all 41 fetched files matched their
+Git blob hashes before execution. No component implementation, test or runner
+was changed.
+
+| Component | Executed tests | Outcome |
+| --- | --- | --- |
+| Voice history | 16 | Passed |
+| Encrypted rolling buffer | 59 | Passed |
+| Visible-send observation | 41 | Passed |
+| Transcript coverage | 16 | Passed |
+| **Total** | **132** | **0 failures** |
+
+The root runner's rolling-buffer, visible-send and transcript examples completed.
+The separate voice-history example was also compiled and run using its documented
+command. Toolchains: OpenJDK 17.0.20 (including its compiler module),
+Kotlin/JVM 2.1.20, Python 3.12.14.
+
+The official Kotlin compiler ZIP was verified against its published SHA-256:
+`a118197b0de55ffab2bc8d5cd03a5e39033cfb53383d6931bc761dec0784891a`.
+The maintenance workflow uses the same pinned compiler and the unchanged root
+runner. These are local results; hosted CI has its own result for each commit.
+
+## 2026-10-10 extraction verification
+
 The standalone packages were compiled and exercised on 2026-10-10. This is a
 local verification record, not a CI badge or an independent audit.
 
