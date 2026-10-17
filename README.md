@@ -30,6 +30,22 @@ Each component can also be tested on its own using its README. `KOTLINC` and
 Generated files are temporary or ignored under `build/`.
 See [VALIDATION.md](VALIDATION.md) for the recorded test results and their limits.
 
+## Continuous integration
+
+[Component tests](.github/workflows/component-tests.yml) runs the existing root
+runner and the documented voice-history example for pull requests and pushes to
+`main`. It uses Java 17, Python 3.12 and Kotlin/JVM 2.1.20. The Kotlin compiler
+download is pinned to the checksum published with the official release, and
+GitHub Actions dependencies are pinned to full commit hashes.
+
+The workflow provisions its toolchains; the component test scripts themselves
+remain offline and do not download dependencies. It needs no repository secrets,
+Android SDK, service account or application integration. The job uses read-only
+repository permissions and does not upload build artifacts or publish releases.
+
+A workflow definition is not a passing result. Check the run for the exact commit;
+[VALIDATION.md](VALIDATION.md) keeps local verification separate from hosted CI.
+
 ## Review and contribute
 
 Please open one issue per question or submit a small patch with a failing
