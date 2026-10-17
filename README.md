@@ -1,5 +1,7 @@
 # Yoni's component review lab
 
+[![Component tests (main)](https://github.com/lmdlaw-sketch/yoni-open-components/actions/workflows/component-tests.yml/badge.svg?branch=main&event=push)](https://github.com/lmdlaw-sketch/yoni-open-components/actions/workflows/component-tests.yml)
+
 Four small, independently runnable components, each centered on one concrete
 correctness question. Start with the component closest to your experience; no
 knowledge of the surrounding applications is needed.
@@ -43,8 +45,11 @@ remain offline and do not download dependencies. It needs no repository secrets,
 Android SDK, service account or application integration. The job uses read-only
 repository permissions and does not upload build artifacts or publish releases.
 
-A workflow definition is not a passing result. Check the run for the exact commit;
-[VALIDATION.md](VALIDATION.md) keeps local verification separate from hosted CI.
+The badge above tracks push runs on `main`. Open the
+[workflow runs](https://github.com/lmdlaw-sketch/yoni-open-components/actions/workflows/component-tests.yml)
+to check the result for the exact commit.
+[Recorded hosted CI results](VALIDATION.md#2026-10-17-hosted-ci) identify the verified
+run and commit separately from the local test results in the same document.
 
 ## Review and contribute
 

@@ -1,5 +1,20 @@
 # Validation record
 
+## 2026-10-17 hosted CI
+
+GitHub reports the following completed workflow run as successful:
+
+| Field | Recorded value |
+| --- | --- |
+| Workflow | `Component tests` |
+| Run | [39049615823](https://github.com/lmdlaw-sketch/yoni-open-components/actions/runs/39049615823) |
+| Commit | `edbec2363011becfa3cfb4966909df9cef595a5e` |
+| Branch and event | `main`, `push` |
+| Status and conclusion | `completed`, `success` |
+
+This entry records the workflow's reported outcome. The per-component test counts
+below remain the separately recorded local verification results.
+
 ## 2026-10-17 maintenance verification
 
 The existing root runner was rerun locally against exact Git source
