@@ -1,5 +1,30 @@
 # Validation record
 
+## 2026-10-17 five-component local verification
+
+The five-component tree was prepared from public `main` commit
+`88dde4c490f1b6de0a1fb10d647091a2eed096a4`, with the duplicate-selection extraction
+and its root-runner integration, and verified locally with `bash run-tests.sh`.
+The command completed once with exit code 0.
+
+| Component | Executed tests | Outcome |
+| --- | --- | --- |
+| Voice history | 16 | Passed |
+| Encrypted rolling buffer | 59 | Passed |
+| Visible-send observation | 41 | Passed |
+| Transcript coverage | 16 | Passed |
+| Duplicate selection | 17 | Passed |
+| **Total** | **149** | **0 failures** |
+
+The runner's rolling-buffer, visible-send, transcript and duplicate-selection
+examples completed. The separate voice-history example was not rerun in this
+local check. Toolchains: OpenJDK 17.0.20, Kotlin/JVM 2.1.20 and Python 3.12.14.
+The existing local toolchains were used; no new dependencies were installed.
+
+This entry records local verification of the prepared files. No hosted CI run
+was executed for this addition during preparation. The hosted result below
+belongs to its recorded earlier commit and does not verify the new component.
+
 ## 2026-10-17 hosted CI
 
 GitHub reports the following completed workflow run as successful:

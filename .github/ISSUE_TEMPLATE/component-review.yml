@@ -18,6 +18,7 @@ body:
         - Encrypted rolling buffer
         - Visible-send observation
         - Transcript coverage
+        - Duplicate selection
   - type: input
     id: commit
     attributes:
